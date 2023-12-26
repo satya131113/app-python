@@ -10,9 +10,17 @@ Initiate the Neo4j Driver
 # tag::initDriver[]
 def init_driver(uri, username, password):
     # TODO: Create an instance of the driver here
-    current_app.driver = None
+    connection_string = "neo4j://100.26.248.227:7687"
 
-    return None
+    username = "neo4j"
+    password = "fellow-libraries-bombs"
+
+    driver = GraphDatabase.driver(connection_string, auth=(username, password))
+    current_app.driver = driver
+
+    current_app.driver.verify_connectivity()
+
+    return current_app.driver
 # end::initDriver[]
 
 
